@@ -1,0 +1,109 @@
+first we do setup tailwindCSS version ^3.4.17
+then we did setup daisyui version ^4.12.24 setup was little diff in tailwind.config.js 
+then we setup themes by daisyui that too in tailwind.config.js
+then we do install react-router not react-router-dom since this been updated
+wrap App with Browserrouter in main -- > this done b/c this means now we can use any component from react-router in App
+then we installed react-hot-toast and import it for pop-up notification liked loggedin sccesfully etc
+
+now we will setup react-ten-stack-queries for this first go to https://tanstack.com/query/latest/docs/framework/react
+
+we are using it because it make the work easy to get data 
+   1. npm i @tanstack/react-query // installation
+   2.  paste below lines inside main.jsx these are also availialble inside quickstart at above link
+        import {
+            QueryClient,
+            QueryClientProvider,
+        } from '@tanstack/react-query'
+
+        const queryClient = new QueryClient() 
+
+// now we can use directly ten-stack-queries anywhere for getting data
+like this 
+these will help to reduce our work
+since normally we have to declare state call api req using useEffect 
+but using below some line it will return state data,isLoading,error
+
+//  const {data:authData,isLoading,error} = useQuery({
+//     queryKey: ['authUser'],
+//     queryFn: async () =>{
+     
+      
+//         const response = await axiosInstance.get("/auth/me")
+//         return response.data; 
+      
+//     },
+//  })
+
+and for posting data like this 
+const queryClient= useQueryClient();
+
+  // this way is used for post and useQuery in app is used to get
+  const {mutate,isPending,error}= useMutation({
+
+    mutationFn : async () =>{
+      const response = await axiosInstance.post("/auth/signup",signUpData);
+      return response.data;
+    },
+    onSuccess : ()=> queryClient.invalidateQueries({ queryKey:["authUser"] }),
+    // like this we can run any query again using the keys
+
+  })
+
+ after this call mutate() on submit form
+    
+
+//picked images from story-set
+//picked icons from lucide react ensure to install npm i lucide-react
+then make the signUp page (label par margin vagerah use block karo to hi kaam karta hai) if w-9 and h-9 is same we can use size-9 then if any input is mendatory mark it required
+
+// after completing the signUp page we organised things 
+like we put mutate func and authuser function inside lib/api
+
+// and since we gonna use getauthuser query again n again so will make it a hook hook name always starts with use**********
+so we can call it whenever needed like this  const {authUser,isLoading} = useAuthUser()
+
+then we completed onboarding page learned how to make select field in form
+
+then we completed login page
+
+then created layout that consist of navbar , sidebar but on condition , and children
+then we created sidebar used useLocation there
+then we used daisy ui themes background using text-primary text-secondary bg-base-100/200/300 colors and data-theme="forest/coffee" on parent location app
+
+
+then we created logout inside navbar that was not working/means it was not navigating to login then we fixed logout server i.e returned null when error then it worked
+
+after this we worked on theme-selector 
+pehele to props drilling se app ki state themeselctor tak pohanchai but it was very lengthy
+
+then we used zustand an npm package to create Global package
+npm i zustand
+paste below code in custome hook
+import { create } from 'zustand'
+// by this we can create a global state and just use where ever we want
+
+export const useDataTheme = create((set) => ({
+  theme: "forest",
+  setTheme : (newTheme)=>{
+    set({theme:newTheme})
+  }
+}))
+
+and just use it anywhere like this const {theme,setTheme} = useDataTheme()
+
+we are also storing current theme in local storage so that refresh does not change it
+
+then we made home page on that few api calls 
+the trickiest part there was to change the button of send req to req sent that was done combination of sentReq api , a use state , onsuccess of send req api we are again fetching sentReq api as the sentReq data changes we put them in a state via use useEffect
+and on displaying users we check if userId is in state of sentReq 
+
+then we make call a aPI to diplay flag used const lang to flag
+
+then we made notifications page
+
+then we made chat and call page you may better watch that again from tutorial
+
+
+/////////////////DEPLOY
+
+in production the optimised version of the react frontend code saved under dist folder

@@ -1,0 +1,14 @@
+first we do install the dependencies
+setup the sever env file then formalised it into constrollers and rotes
+then we connect the mongodb cloud and changes the network access permisson to allow everyone in mongodb
+then we setup stream keys in env file
+then we created user model and pre-hook inside it to save hashed password in database
+then we worked on user signup, jwt token generation , cookie setup
+then we worked on login and logout while login we learn to use methods of modules ex match password in this case
+after that we have created user for stream as well because stream will also perform authentication in its end that user is authentic or not ( of our database on stream)
+after that we have created onboarding route for which first we created ProtectRoute middleware that checks if user is loggedin or not using cookies 
+updated stream user as well
+then we started working on user routes like get recommendedusers and getFriends 
+then we created model Friend Req 
+then we created more function user routes like sentFriendReq acceptFriendReq  getFriendReq and more
+then we created chat route just to create stream token 
