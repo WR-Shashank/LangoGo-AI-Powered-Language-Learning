@@ -52,8 +52,8 @@
 
 ```bash
 # 1. Clone the monorepo
-git clone https://github.com/NaiveAbhay/LangoGo-VideoCalls.git
-cd LangoGo-VideoCalls
+git clone https://github.com/NaiveAbhay/LangoGo-AI-Powered-Language-Learning.git
+cd LangoGo-AI-Powered-Language-Learning
 
 # 2. Install root dependencies
 npm install           # installs husky / shared scripts
